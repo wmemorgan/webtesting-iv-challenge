@@ -18,7 +18,12 @@ router.get('/:id', async (req, res) => {
   const { id } = req.params
   try {
     const data = await db.findById('Users', id)
-    res.send(data)
+    if (data) {
+      res.send(data)
+    } else {
+      res.status(404).json({ message: `Record ${id} not found` })
+    }
+   
   }
   catch (err) {
     res.status(500).send(err.message)
@@ -28,7 +33,8 @@ router.get('/:id', async (req, res) => {
 //==== POST ====//
 router.post('/', async (req, res) => {
   try {
-
+    const data = await db.insert('Users', req.body)
+    res.status(201).send(data)
   }
   catch (err) {
     res.status(500).send(err.message)
@@ -37,8 +43,13 @@ router.post('/', async (req, res) => {
 
 //==== DELETE ====//
 router.delete('/:id', async (req, res) => {
+  const { id } = req.params
   try {
-
+    const data = await db.remove('Users', id)
+    if (data <= 0) throw err
+    else {
+      res.json({ message: `Successfully deleted record ${id}` })
+    }
   }
   catch (err) {
     res.status(500).send(err.message)
