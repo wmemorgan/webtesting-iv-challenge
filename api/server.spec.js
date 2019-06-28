@@ -9,11 +9,8 @@ describe('server.js test suite', () => {
   })
 
   it('server should return `up` status', async () => {
-    const res = await request(server).get('/')
+    const res = await request(server).get('/api')
     expect(res.body).toEqual({ status: 'up' })
   })
 
-  xit('confirm environment for test database', () => {
-    expect(process.env.DB_ENV).toBe('testing')
-  })
 })
