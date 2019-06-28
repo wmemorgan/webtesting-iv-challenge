@@ -76,13 +76,12 @@ describe('Users data model', () => {
   })
 
   describe('remove()', () => {
+    // Seed with test data
     const testUsers = [
       { id: 1, name: 'George', email: 'george@mail.com' },
       { id: 2, name: 'Steve', email: 'steve@gmail.com' },
       { id: 3, name: 'Harry', email: 'harry@hotmail.com' },
     ]
-
-    // Seed with test data
     beforeEach(async () => {
       await db('Users').insert(testUsers)
     })
