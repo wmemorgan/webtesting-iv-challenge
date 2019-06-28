@@ -30,6 +30,12 @@ describe('Users endpoint testing', () => {
       expect(res.body).toEqual(testUsers)
     })
 
+    it('/users/:id should return user by id', async () => {
+      let id = 1
+      const res = await request(server).get(`/api/users/${id}`)
+      expect(res.body).toEqual(testUsers[id-1])
+    })
+
   })
 
   xdescribe('POST /users')

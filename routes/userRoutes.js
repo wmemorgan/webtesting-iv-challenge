@@ -15,8 +15,10 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
+  const { id } = req.params
   try {
-
+    const data = await db.findById('Users', id)
+    res.send(data)
   }
   catch (err) {
     res.status(500).send(err.message)
