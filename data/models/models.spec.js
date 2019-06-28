@@ -7,6 +7,10 @@ describe('Users data model', () => {
     await db('Users').truncate()
   })
 
+  it('confirm environment for test database', () => {
+    expect(process.env.DB_ENV).toBe('testing')
+  })
+
   describe('findAll()', () => {
 
     it('find all records in table', async () => {
